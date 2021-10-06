@@ -1,24 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class PlayerMovement : MonoBehaviour
 {
     public CharacterController control;
-    //Transform camTrans;
+    public Transform cam;
     public float moveSpeed = 10f;
 
     float turnSmoothing = 0.1f;
     float turnSmoothVel;
 
     int coinCount = 0;
+    
+    public Text coinText;
 
     bool isWalking;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        control = GetComponent<CharacterController>();
+        coinText.text = coinCount.ToString("0");
     }
 
     // Update is called once per frame
@@ -33,7 +38,7 @@ public class PlayerMovement : MonoBehaviour
         if (direction.magnitude >= 0.1)
         {
             isWalking = true;
-            float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;// + camTrans.eulerAngles.y;
+            float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVel, turnSmoothing);
             transform.rotation = Quaternion.Euler(0, angle, 0);
 
@@ -54,6 +59,7 @@ public class PlayerMovement : MonoBehaviour
         {
             GetComponent<Animator>().SetInteger("AnimatorState", 1);
         }
+        Recount();
     }
 
     void OnTriggerEnter(Collider col)
@@ -62,7 +68,6 @@ public class PlayerMovement : MonoBehaviour
         {
             Destroy(col.gameObject);
             coinCount++;        
-            Debug.Log(coinCount);
 
         }
     }
@@ -70,5 +75,10 @@ public class PlayerMovement : MonoBehaviour
     public int GetCoinCount()
     {
         return coinCount;
+    }
+
+    void Recount()
+    {
+        coinText.text = coinCount.ToString("");
     }
 }
