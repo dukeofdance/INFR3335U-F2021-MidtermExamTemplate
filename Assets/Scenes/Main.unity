@@ -1373,7 +1373,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   control: {fileID: 82447416}
   cam: {fileID: 963194228}
-  moveSpeed: 5
+  moveSpeed: 3
   coinText: {fileID: 813473132}
 --- !u!1001 &91274643
 PrefabInstance:
@@ -2776,7 +2776,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 185854384}
-  m_LocalRotation: {x: 0.014724663, y: -0.000000012753576, z: -0.0000000054007288,
+  m_LocalRotation: {x: 0.014724664, y: -0.000000016327043, z: -0.000000005348105,
     w: 0.9998916}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
